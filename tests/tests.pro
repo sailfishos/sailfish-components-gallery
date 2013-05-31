@@ -1,4 +1,5 @@
 TEMPLATE = subdirs
+SUBDIRS = tst_imageeditor
 
 OTHER_FILES += auto/*.qml
 
