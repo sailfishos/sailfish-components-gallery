@@ -1,11 +1,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Page {
-    id: page
+Dialog {
+    id: dialog
 
-    property alias open: drawer.open
-    property alias opened: drawer.opened
+    // open and opened would shadow Dialog's opened signal and open function.
+    property alias splitOpen: drawer.open
+    property alias splitOpened: drawer.opened
 
     property alias backgroundItem: drawer.backgroundItem
     property alias background: drawer.background
@@ -19,7 +20,7 @@ Page {
 
     Drawer {
         id: drawer
-        dock: page.orientation == Orientation.Portrait ? Dock.Top: Dock.Left
+        dock: dialog.orientation == Orientation.Portrait ? Dock.Top: Dock.Left
         hideOnMinimize: true
         anchors.fill: parent
     }
