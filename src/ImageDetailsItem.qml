@@ -62,10 +62,15 @@ Column {
     function formatCoordinates(latitude, longitude, altitude) {
         //: GPS coordinates
         //% "Latitude %1 - Longitude %2 - Altitude %3"
-        return qsTrId("components_gallery-value-gps")
+        var coordText = qsTrId("components_gallery-value-gps")
                 .arg(latitude)
                 .arg(longitude)
                 .arg(altitude)
+
+        //: "Open in map" link text
+        //% "Open"
+        var openText = qsTrId("components_gallery-la-open_in_map")
+        return coordText + " - <a href=\"geo:" + latitude + "," + longitude + "," + altitude + "\">" + openText + "</a>"
     }
 
     width: parent.width
@@ -118,6 +123,8 @@ Column {
         label: qsTrId("components_gallery-la-coordinate")
         visible: value.length > 0
         alignment: Qt.AlignLeft
+        valueTextFormat: Text.StyledText
+        onValueLinkActivated: Qt.openUrlExternally(link)
     }
     DetailItem {
         id: durationItem
