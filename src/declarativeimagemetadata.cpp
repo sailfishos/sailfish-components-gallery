@@ -10,6 +10,7 @@
 #include <QStringList>
 #include <QtDebug>
 #include <QImageReader>
+#include <QMultiHash>
 
 #include <QElapsedTimer>
 
@@ -27,8 +28,7 @@ private slots:
     void imageChanged(const QString &fileName);
 
 private:
-    QHash<QString, DeclarativeImageMetadata *> m_metadata;
-    typedef QHash<QString, DeclarativeImageMetadata *>::iterator iterator;
+    QMultiHash<QString, DeclarativeImageMetadata *> m_metadata;
 };
 
 ImageWatcher::ImageWatcher(QObject *parent)
@@ -48,7 +48,7 @@ void ImageWatcher::deregisterMetadata(const QString &fileName, DeclarativeImageM
         return;
     }
 
-    for (iterator it = m_metadata.find(fileName); it != m_metadata.end() && it.key() == fileName; ++it) {
+    for (auto it = m_metadata.find(fileName); it != m_metadata.end() && it.key() == fileName; ++it) {
         if (it.value() == metadata) {
             m_metadata.erase(it);
             break;
@@ -68,12 +68,12 @@ void ImageWatcher::registerMetadata(const QString &fileName, DeclarativeImageMet
     if (!m_metadata.contains(fileName)) {
         addPath(fileName);
     }
-    m_metadata.insertMulti(fileName, metadata);
+    m_metadata.insert(fileName, metadata);
 }
 
 void ImageWatcher::imageChanged(const QString &fileName)
 {
-    for (iterator it = m_metadata.find(fileName); it != m_metadata.end() && it.key() == fileName; ++it) {
+    for (auto it = m_metadata.find(fileName); it != m_metadata.end() && it.key() == fileName; ++it) {
         it.value()->fileChanged(fileName);
     }
 }
