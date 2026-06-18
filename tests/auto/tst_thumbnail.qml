@@ -14,7 +14,7 @@ Item {
 
     // Grid needs this, usually it comes from Page
     property bool isPortrait: true
-    property variant thumbnail
+    property var thumbnail
 
     ImageGridView {
         id: imageGridView
