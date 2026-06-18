@@ -78,7 +78,8 @@ public:
             qmlRegisterSingletonType<DeclarativeAvatarFileHandler>("Sailfish.Gallery.private", 1, 0,
                                                                    "AvatarFileHandler",
                                                                    DeclarativeAvatarFileHandler::api_factory);
-            qmlRegisterSingletonType<ImageWriter>("Sailfish.Gallery.private", 1, 0, "ImageWriter", ImageWriter::api_factory);
+            qmlRegisterSingletonType<ImageWriter>("Sailfish.Gallery.private", 1, 0, "ImageWriter",
+                                                  ImageWriter::api_factory);
         }
     }
 };

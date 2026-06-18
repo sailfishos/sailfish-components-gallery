@@ -22,6 +22,7 @@ class DeclarativeImageMetadata : public QObject, public QQmlParserStatus
     Q_PROPERTY(int height READ height NOTIFY heightChanged)
     Q_PROPERTY(bool valid READ valid NOTIFY validChanged)
     Q_INTERFACES(QQmlParserStatus)
+
 public:
     explicit DeclarativeImageMetadata(QObject *parent = 0);
     ~DeclarativeImageMetadata();

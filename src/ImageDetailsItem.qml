@@ -60,12 +60,23 @@ Column {
     }
 
     function formatCoordinates(latitude, longitude, altitude) {
-        //: GPS coordinates
-        //% "Latitude %1 - Longitude %2 - Altitude %3"
-        var coordText = qsTrId("components_gallery-value-gps")
+        // would be good to know if altitude is really 0 or just not available
+        // but likelier that 0 just means no info available
+        var coordText
+        if (altitude != 0) {
+            //: GPS coordinates
+            //% "Latitude %1 - Longitude %2 - Altitude %3"
+            coordText = qsTrId("components_gallery-value-gps")
                 .arg(latitude)
                 .arg(longitude)
                 .arg(altitude)
+        } else {
+            //: GPS coordinates
+            //% "Latitude %1 - Longitude %2"
+            coordText = qsTrId("components_gallery-value-gps_coord")
+                .arg(latitude)
+                .arg(longitude)
+        }
 
         //: "Open in map" link text
         //% "Open"
