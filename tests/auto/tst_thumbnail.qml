@@ -30,7 +30,8 @@ Item {
 
     ListModel {
         id: testModel
-        Component.onCompleted: append({"mimeType": "image/jpeg", "url": "file://" + StandardPaths.pictures + "Default/All_green.jpg" })
+        Component.onCompleted: append({"mimeType": "image/jpeg",
+                                          "url": "file://" + StandardPaths.pictures + "Default/All_green.jpg" })
     }
 
 
@@ -49,6 +50,7 @@ Item {
 
         Connections {
             id: pressedSpy
+
             target: pressedSpyFakeTarget
             onPressed: targetPressed()
             signal targetPressed()
@@ -77,8 +79,7 @@ Item {
         name: "ThumbnailImage"
         when: windowShown
 
-        function test_init()
-        {
+        function test_init() {
             isPortrait = true
             thumbnail = Utils.findChild(imageGridView, "ThumbnailImage_QMLTYPE")
             clickedSpy.target = thumbnail
@@ -108,7 +109,6 @@ Item {
             compare(nemoThumbnail.sourceSize.width, thumbnail.height)
         }
 
-
         function test_thumbnailImageClicked() {
             verify(thumbnail != null)
 
@@ -134,4 +134,3 @@ Item {
         }
     }
 }
-

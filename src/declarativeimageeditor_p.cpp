@@ -316,4 +316,3 @@ void DeclarativeImageEditorPrivate::adjustLevels(const QString &source, const QS
     emit levelsAdjusted(!targetFile.isEmpty(), targetFile);
 #endif
 }
-

@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 #include "declarativeimagemetadata.h"
+
 #include <QFileSystemWatcher>
 #include <QFile>
 #include <QStringList>
@@ -197,7 +198,6 @@ void DeclarativeImageMetadata::fileChanged(const QString &fileName)
     m_orientation = 0;
     m_width = 0;
     m_height = 0;
-
 
     if (m_wantDimensions) {
         readDimensions(fileName);
