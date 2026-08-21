@@ -18,7 +18,10 @@ GridItem {
     width: size
     contentHeight: size
     opacity: down && selected && !menuOpen ? 0.8 : 1.0
-    highlighted: down || menuOpen || selected
+    // _keyFocused has to be repeated here: GridItem already carries it, but
+    // replacing the binding would drop it, and the highlight below is the
+    // only thing that paints over an opaque thumbnail.
+    highlighted: down || menuOpen || selected || _keyFocused
 
     HighlightItem {
         z: 1
