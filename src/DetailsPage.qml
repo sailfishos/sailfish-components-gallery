@@ -91,7 +91,7 @@ Page {
                                   // exposureProgram is not supported by Tracker thus not enabled.
                                   // https://github.com/qtproject/qtdocgallery/blob/0b9ca223d4d5539ff09ce49a841fec4c24077830/src/gallery/qdocumentgallery.cpp#L799
                                   'exposureTime',
-                                  'fNumber', 'flashEnabled', 'focalLength', 'meteringMode', 'whiteBalance',
+                                  'fNumber', 'flashEnabled', 'focalLength', 'meteringMode', 'whiteBalance', 'isoSpeed',
                                   'latitude', 'longitude', 'altitude',
                                   'description', 'copyright', 'author'
                                 ]
@@ -143,6 +143,7 @@ Page {
                     whiteBalanceDetail.value: model.whiteBalance != ""
                               ? whiteBalanceValues[model.whiteBalance]
                               : ""
+                    isoSpeedDetail.value: model.isoSpeed
                     coordinateDetail.value: model.latitude != ""
                             ? formatCoordinates(model.latitude,
                                                 model.longitude,

@@ -23,6 +23,7 @@ Column {
     property alias focalLengthDetail: focalLengthItem
     property alias meteringModeDetail: meteringModeItem
     property alias whiteBalanceDetail: whiteBalanceItem
+    property alias isoSpeedDetail: isoSpeedItem
     property alias coordinateDetail: coordinateItem
     property alias durationDetail: durationItem
     property alias descriptionDetail: descriptionItem
@@ -213,6 +214,14 @@ Column {
         //% "Aperture"
         label: qsTrId("components_gallery-la-aperture")
         visible: value.length > 0
+        alignment: Qt.AlignLeft
+    }
+    DetailItem {
+        id: isoSpeedItem
+
+        //% "ISO"
+        label: qsTrId("components_gallery-la-iso_speed")
+        visible: value.length > 0 && value != "0"
         alignment: Qt.AlignLeft
     }
     DetailItem {
