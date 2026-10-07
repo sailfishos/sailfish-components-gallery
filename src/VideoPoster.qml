@@ -100,27 +100,35 @@ Item {
         size: BusyIndicatorSize.Large
     }
 
-    Image {
-        id: icon
+    IconButton {
+        id: playButton
 
         anchors.centerIn: parent
+        width: icon.width
+        height: icon.height
         enabled: !busy && (overlayMode || !playing) && !root.error
         opacity: enabled ? 1.0 : 0.0
         Behavior on opacity { FadeAnimator {} }
 
+        icon.color: Theme.lightPrimaryColor
+        onClicked: togglePlay()
+
+        // Playback disables the button, which leaves Ok nothing to click. Holding
+        // the focus on the poster lets Ok click it, as a tap does, to bring the
+        // controls back, and the button takes it again once it reappears.
+        onEnabledChanged: {
+            if (!enabled && activeFocus) {
+                root.forceActiveFocus()
+            } else if (enabled && root.activeFocus) {
+                forceActiveFocus()
+            }
+        }
+
         Binding	{
-            target: icon
+            target: playButton.icon
             when: overlayMode || !playing // avoid flicker to pause icon when pressing play
             property: "source"
             value: "image://theme/icon-video-overlay-" + (playing ?  "pause" : "play")
-                   + "?" + (iconMouse.down ? Theme.highlightColor : Theme.lightPrimaryColor)
-        }
-        MouseArea {
-            id: iconMouse
-
-            property bool down: pressed && containsMouse
-            anchors.fill: parent
-            onClicked: togglePlay()
         }
     }
     Component {
