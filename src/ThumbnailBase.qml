@@ -18,7 +18,7 @@ GridItem {
     width: size
     contentHeight: size
     opacity: down && selected && !menuOpen ? 0.8 : 1.0
-    highlighted: down || menuOpen || selected
+    highlighted: down || menuOpen || selected || activeFocus
 
     HighlightItem {
         z: 1

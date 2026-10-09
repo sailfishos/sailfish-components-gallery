@@ -35,6 +35,11 @@ Item {
     }
 
 
+    // Somewhere for focus to go when a test moves it off the thumbnail.
+    Item {
+        id: focusSink
+    }
+
     SignalSpy {
         id: clickedSpy
         signalName: "clicked"
@@ -118,6 +123,22 @@ Item {
             tryCompare(clickedSpy, "count", 1)
             tryCompare(pressedSpy, "count", 1)
             tryCompare(releasedSpy, "count", 1)
+        }
+
+        function test_thumbnailKeyFocusHighlight() {
+            verify(thumbnail != null)
+
+            focusSink.forceActiveFocus()
+            tryCompare(thumbnail, "highlighted", false)
+
+            // The grid item paints its own highlight over an opaque thumbnail,
+            // so key focus has to reach `highlighted` or a device driven by keys
+            // alone shows no selection at all.
+            thumbnail.forceActiveFocus()
+            tryCompare(thumbnail, "highlighted", true)
+
+            focusSink.forceActiveFocus()
+            tryCompare(thumbnail, "highlighted", false)
         }
 
         function test_thumbnailImagePressedReleased() {
